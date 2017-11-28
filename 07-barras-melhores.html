@@ -77,10 +77,23 @@
       /*
        * As escalas
        */
+
+       d3.max(dados, function(d) {    //Returns 480
+          return d[0];  //References first value in each sub-array
+      });
+
+      dados.map((dado, indice) => dado.quem)
+
+
       var x = d3.scaleBand(); // Configure essa escala com domain, range e padding
+                .domain(["A", "B", "C"])
+                .range([0, 100]);
+
+      ["A", "B", "C"].map(d => escala_posicao(d)
 
       var y = d3.scaleLinear() // Configure essa escala com domain e range
-                               // Lembre que uma escala pode converter de 1..10 -> 100..1
+                .domain([0, alturaVis])
+                .rangeRound([0, 300])                 // Lembre que uma escala pode converter de 1..10 -> 100..1
 
       // === ATÉ DAQUI ===
 

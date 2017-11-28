@@ -17,12 +17,12 @@
 
     <style>
       .mychart rect {
-        fill: steelblue;
+        fill: red;
       }
 
       .mychart text {
-        fill: white;
-        font: 10px sans-serif;
+        fill: yellow;
+        font: 15px sans-serif;
         text-anchor: end;
       }
     </style>
@@ -31,7 +31,7 @@
       "use strict"
       var dados = [40, 80, 96, 76, 23, 42, 32, 90, 11, 22, 14];
       var largura = 200,
-          altura = 500;
+          altura = 300;
 
       var svg = d3.select('#chart')
                 .append('svg')
@@ -58,9 +58,9 @@
                     return i * altura/ dados.length;
           }) // e aqui
               .attr('width', function(d, i){
-                    return i * largura/ dados.length;
+                    return dados[i];
           })
-              .attr('height', 20);
+              .attr('height', 15);
 
 
 
