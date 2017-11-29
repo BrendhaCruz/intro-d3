@@ -31,11 +31,11 @@
 
     <style>
       .mychart rect {
-        fill: steelblue;
+        fill: green;
       }
 
       .mychart rect:hover {
-        fill: goldenrod;
+        fill: purple;
       }
 
       .mychart text {
@@ -59,7 +59,7 @@
 
       // definicoes de altura e largura do svg e da vis dentro
       var alturaSVG = 400, larguraSVG = 900;
-      var	margin = {top: 10, right: 20, bottom:30, left: 45}, // para descolar a vis das bordas do grafico
+      var	margin = {top: 0, right: 20, bottom:30, left: 45}, // para descolar a vis das bordas do grafico
           larguraVis = larguraSVG - margin.left - margin.right,
           alturaVis = alturaSVG - margin.top - margin.bottom;
 
@@ -78,22 +78,22 @@
        * As escalas
        */
 
-       d3.max(dados, function(d) {    //Returns 480
-          return d[0];  //References first value in each sub-array
+       var letras = function(d){
+        return d.letra
+      }
+
+      var max = d3.max(dados, function(d) {    //Returns 480
+          return d.valor;  //References first value in each sub-array
       });
 
-      dados.map((dado, indice) => dado.quem)
-
-
       var x = d3.scaleBand(); // Configure essa escala com domain, range e padding
-                .domain(["A", "B", "C"])
-                .range([0, 100]);
-
-      ["A", "B", "C"].map(d => escala_posicao(d)
+        x.domain(dados.map(d => d.letra))
+        x.range([0, larguraVis])
+        x.padding(.5) 
 
       var y = d3.scaleLinear() // Configure essa escala com domain e range
-                .domain([0, alturaVis])
-                .rangeRound([0, 300])                 // Lembre que uma escala pode converter de 1..10 -> 100..1
+        y.domain([0, max])
+        y.range([alturaVis, 0]) // Lembre que uma escala pode converter de 1..10 -> 100..1
 
       // === ATÉ DAQUI ===
 
